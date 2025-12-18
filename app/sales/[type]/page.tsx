@@ -8,8 +8,8 @@ import { getMetabolismType } from '@/lib/metabolism-types'
 
 // UPDATE THESE URLs with your actual Cartpanda/Kirvano checkout URLs
 const CHECKOUT_URLS = {
-  monthly: 'https://your-checkout-url.com/monthly',
-  annual: 'https://your-checkout-url.com/annual'
+  monthly: 'https://metaslim.mycartpanda.com/checkout/204917190:1',
+  annual: 'https://metaslim.mycartpanda.com/checkout/204917189:1'
 }
 
 export default function SalesPage() {
