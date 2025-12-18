@@ -80,9 +80,9 @@ export default function ResultPage() {
 
         {/* Trust Badges */}
         <div className="flex justify-center gap-6 text-sm text-gray-600">
-          <span>✓ Science-Based</span>
-          <span>✓ 10,000+ Success Stories</span>
-          <span>✓ 30-Day Program</span>
+          <span className="text-gray-600">✓ Science-Based</span>
+          <span className="text-gray-600">✓ 10,000+ Success Stories</span>
+          <span className="text-gray-600">✓ 30-Day Program</span>
         </div>
       </div>
     </div>

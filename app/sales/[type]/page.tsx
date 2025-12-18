@@ -115,27 +115,27 @@ export default function SalesPage() {
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Monthly Plan */}
             <Card className="text-center p-8">
-              <h3 className="text-2xl font-bold mb-4">Monthly Plan</h3>
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">Monthly Plan</h3>
               <div className="mb-6">
-                <span className="text-5xl font-bold">$37</span>
+                <span className="text-5xl font-bold text-gray-900">$37</span>
                 <span className="text-gray-600">/month</span>
               </div>
               <ul className="text-left space-y-3 mb-8">
                 <li className="flex items-start gap-2">
                   <CheckIcon className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <span>30-day {typeInfo.name} program</span>
+                  <span className="text-gray-900">30-day {typeInfo.name} program</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckIcon className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <span>Lean AI coach 24/7</span>
+                  <span className="text-gray-900">Lean AI coach 24/7</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckIcon className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <span>Type-specific meal plans</span>
+                  <span className="text-gray-900">Type-specific meal plans</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckIcon className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <span>Progress tracking</span>
+                  <span className="text-gray-900">Progress tracking</span>
                 </li>
               </ul>
               <Button fullWidth size="lg" onClick={() => handleCheckout('monthly')}>
@@ -148,9 +148,9 @@ export default function SalesPage() {
               <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-yellow-400 text-gray-900 px-6 py-1 rounded-full font-bold text-sm">
                 BEST VALUE - Save $147
               </div>
-              <h3 className="text-2xl font-bold mb-4">Annual Plan</h3>
+              <h3 className="text-2xl font-bold mb-4 text-gray-900">Annual Plan</h3>
               <div className="mb-6">
-                <span className="text-5xl font-bold">$297</span>
+                <span className="text-5xl font-bold text-gray-900">$297</span>
                 <span className="text-gray-600">/year</span>
                 <p className="text-sm text-green-600 font-semibold mt-2">
                   Just $24.75/month!
@@ -159,19 +159,19 @@ export default function SalesPage() {
               <ul className="text-left space-y-3 mb-8">
                 <li className="flex items-start gap-2">
                   <CheckIcon className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <span>Everything in Monthly</span>
+                  <span className="text-gray-900">Everything in Monthly</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckIcon className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <span>Priority support</span>
+                  <span className="text-gray-900">Priority support</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckIcon className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <span>Exclusive bonus content</span>
+                  <span className="text-gray-900">Exclusive bonus content</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckIcon className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
-                  <span>Advanced analytics</span>
+                  <span className="text-gray-900">Advanced analytics</span>
                 </li>
                 <li className="flex items-start gap-2">
                   <CheckIcon className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
