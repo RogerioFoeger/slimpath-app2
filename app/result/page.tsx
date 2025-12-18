@@ -1,13 +1,13 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { Button } from '@/components/Button'
 import { Card } from '@/components/Card'
 import { getMetabolismType } from '@/lib/metabolism-types'
 import { MetabolismTypeInfo } from '@/lib/types'
 
-export default function ResultPage() {
+function ResultContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [typeInfo, setTypeInfo] = useState<MetabolismTypeInfo | null>(null)
@@ -86,6 +86,14 @@ export default function ResultPage() {
         </div>
       </div>
     </div>
+  )
+}
+
+export default function ResultPage() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <ResultContent />
+    </Suspense>
   )
 }
 
