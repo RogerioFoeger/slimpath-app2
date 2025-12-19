@@ -61,7 +61,7 @@ In `app/sales/[type]/page.tsx`, replace the video placeholder with your actual v
 ### 3. Configure Cartpanda/Kirvano
 
 In your payment processor:
-1. Set webhook URL: `https://app.slimpathai.com/api/webhook`
+1. Set webhook URL: `https://slimpathaiapp.vercel.app/api/webhook`
 2. Configure custom field: `profile_type`
 3. Pass type from URL parameter
 4. Send these fields in webhook:
@@ -119,12 +119,9 @@ git push -u origin main
    - Build Command: `npm run build`
    - Output Directory: `.next`
 
-4. Add Custom Domain:
-   - In Vercel → Project → Settings → Domains
-   - Add: `slimpathai.com`
-   - Follow DNS instructions in GoDaddy
-
-5. Deploy!
+4. Deploy!
+   - Vercel will auto-assign a domain like `slim-path-marketing.vercel.app`
+   - Or add a custom domain in Settings → Domains
 
 ## 🎨 Customization
 
@@ -154,7 +151,7 @@ Edit `lib/metabolism-types.ts` to modify symptoms, causes, solutions for each ty
 Homepage → Quiz (10 questions) → Result Page → Sales Page → Checkout → PWA App
 ```
 
-1. User visits slimpathai.com
+1. User visits `slim-path-marketing.vercel.app`
 2. Takes quiz and answers 10 questions
 3. Sees result: "You're a Cortisol Type!"
 4. Redirected to personalized sales page
@@ -169,7 +166,7 @@ Homepage → Quiz (10 questions) → Result Page → Sales Page → Checkout →
 
 The marketing site integrates with the PWA app via:
 1. **Profile Type Parameter**: Passes `type=cortisol` to checkout
-2. **Webhook**: Cartpanda sends data to `app.slimpathai.com/api/webhook`
+2. **Webhook**: Cartpanda sends data to `slimpathaiapp.vercel.app/api/webhook`
 3. **Magic Link**: PWA sends email with login link
 4. **Onboarding**: PWA already knows user's metabolism type
 

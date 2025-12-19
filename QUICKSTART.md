@@ -116,7 +116,7 @@ slimpath-marketing/
 ## 🎯 Complete User Journey
 
 ```
-1. User visits slimpathai.com
+1. User visits slim-path-marketing.vercel.app
    ↓
 2. Clicks "Take Free Quiz"
    ↓
@@ -187,7 +187,7 @@ This marketing site passes `?type=cortisol` to your checkout, which then goes to
 **Make sure your Cartpanda/Kirvano:**
 1. Has custom field: `profile_type`
 2. Captures from URL parameter: `type`
-3. Sends to webhook: `https://app.slimpathai.com/api/webhook`
+3. Sends to webhook: `https://slimpathaiapp.vercel.app/api/webhook`
 
 ---
 

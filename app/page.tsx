@@ -14,7 +14,7 @@ export default function HomePage() {
       <nav className="bg-white shadow-soft">
         <div className="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
           <div className="text-2xl font-bold gradient-text">SlimPath AI</div>
-          <Button variant="outline" size="sm" onClick={() => window.location.href = 'https://app.slimpathai.com/login'}>
+          <Button variant="outline" size="sm" onClick={() => window.location.href = 'https://slimpathaiapp.vercel.app/login'}>
             Sign In
           </Button>
         </div>

@@ -62,8 +62,8 @@ git push -u origin main
 In Vercel → Project → Settings → Environment Variables:
 
 ```
-NEXT_PUBLIC_APP_URL=https://slimpathai.com
-NEXT_PUBLIC_PWA_URL=https://app.slimpathai.com
+NEXT_PUBLIC_APP_URL=https://slim-path-marketing.vercel.app
+NEXT_PUBLIC_PWA_URL=https://slimpathaiapp.vercel.app
 NEXT_PUBLIC_CHECKOUT_MONTHLY=your_checkout_url
 NEXT_PUBLIC_CHECKOUT_ANNUAL=your_checkout_url
 ```
@@ -92,9 +92,9 @@ NEXT_PUBLIC_CHECKOUT_ANNUAL=your_checkout_url
 
 ## 🔗 Integration with PWA
 
-Ensure your PWA (app.slimpathai.com) webhook is configured:
+Ensure your PWA (slimpathaiapp.vercel.app) webhook is configured:
 
-1. **Cartpanda/Kirvano Webhook URL**: `https://app.slimpathai.com/api/webhook`
+1. **Cartpanda/Kirvano Webhook URL**: `https://slimpathaiapp.vercel.app/api/webhook`
 2. **Custom Field**: `profile_type`
 3. **Pass from URL**: Yes (from `?type=cortisol` in checkout URL)
 
