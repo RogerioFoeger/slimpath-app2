@@ -42,7 +42,7 @@ export default function ThankYouPage() {
 
         <Button 
           size="lg"
-          onClick={() => window.location.href = 'https://slimpathaiapp.vercel.app/login'}
+          onClick={() => window.location.href = 'https://slimpathai.com/login'}
         >
           Go to App →
         </Button>
