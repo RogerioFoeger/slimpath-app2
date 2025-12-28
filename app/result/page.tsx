@@ -11,7 +11,7 @@ function ResultContent() {
   const router = useRouter()
   const searchParams = useSearchParams()
   const [typeInfo, setTypeInfo] = useState<MetabolismTypeInfo | null>(null)
-  const [countdown, setCountdown] = useState(5)
+  const [countdown, setCountdown] = useState(15)
 
   useEffect(() => {
     const type = searchParams.get('type') || 'cortisol'
