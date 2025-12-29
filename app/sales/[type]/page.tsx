@@ -18,6 +18,13 @@ export default function SalesPage() {
   const typeInfo = getMetabolismType(type)
 
   const handleCheckout = (plan: 'monthly' | 'annual') => {
+    // Store type in localStorage before redirecting to CartPanda
+    // This allows us to retrieve it after payment when user logs in
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('slimpath_profile_type', type)
+      localStorage.setItem('slimpath_checkout_timestamp', Date.now().toString())
+    }
+    
     // Redirect to checkout with type parameter
     const checkoutUrl = `${CHECKOUT_URLS[plan]}?type=${type}`
     window.location.href = checkoutUrl
