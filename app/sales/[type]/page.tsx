@@ -17,13 +17,17 @@ export default function SalesPage() {
   const type = params.type as string
   const typeInfo = getMetabolismType(type)
 
-  const handleCheckout = (plan: 'monthly' | 'annual') => {
-    // Store type in localStorage before redirecting to CartPanda
-    // This allows us to retrieve it after payment when user logs in
+  const handleCheckout = async (plan: 'monthly' | 'annual') => {
+    // Store type in localStorage (backup for same-domain)
     if (typeof window !== 'undefined') {
       localStorage.setItem('slimpath_profile_type', type)
       localStorage.setItem('slimpath_checkout_timestamp', Date.now().toString())
     }
+    
+    // Store type in database (cross-domain solution)
+    // Note: We'll store it when webhook fires with email, but we can also
+    // try to store it here if user has provided email (unlikely at this stage)
+    // For now, the webhook will check the database table when profile_type is missing
     
     // Redirect to checkout with type parameter
     const checkoutUrl = `${CHECKOUT_URLS[plan]}?type=${type}`
