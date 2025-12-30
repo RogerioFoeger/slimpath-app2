@@ -22,12 +22,37 @@ export default function SalesPage() {
     if (typeof window !== 'undefined') {
       localStorage.setItem('slimpath_profile_type', type)
       localStorage.setItem('slimpath_checkout_timestamp', Date.now().toString())
+      
+      // Generate a session ID to track this checkout session
+      let sessionId = sessionStorage.getItem('slimpath_checkout_session_id')
+      if (!sessionId) {
+        sessionId = `session_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`
+        sessionStorage.setItem('slimpath_checkout_session_id', sessionId)
+      }
+      localStorage.setItem('slimpath_checkout_session_id', sessionId)
+      
+      // Store profile type in database using session ID as temporary identifier
+      // The webhook will match this by checking for the most recent entry
+      // Note: This requires the store-profile-type API to accept session_id
+      try {
+        const response = await fetch('https://slimpathai.com/api/store-profile-type', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            profile_type: type,
+            session_id: sessionId
+          })
+        })
+        if (response.ok) {
+          console.log('✅ Profile type stored in database for checkout')
+        } else {
+          console.warn('⚠️ Failed to store profile type in database, will rely on localStorage')
+        }
+      } catch (error) {
+        console.warn('⚠️ Error storing profile type in database:', error)
+        // Continue anyway - localStorage will be used as fallback
+      }
     }
-    
-    // Store type in database (cross-domain solution)
-    // Note: We'll store it when webhook fires with email, but we can also
-    // try to store it here if user has provided email (unlikely at this stage)
-    // For now, the webhook will check the database table when profile_type is missing
     
     // Redirect to checkout with type parameter
     const checkoutUrl = `${CHECKOUT_URLS[plan]}?type=${type}`
