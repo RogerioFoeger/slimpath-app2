@@ -32,9 +32,10 @@ export default function SalesPage() {
       localStorage.setItem('slimpath_checkout_session_id', sessionId)
       
       // Store profile type in database using session ID as temporary identifier
+      // CRITICAL: Wait for this to complete before redirecting to ensure webhook can find it
       // The webhook will match this by checking for the most recent entry
-      // Note: This requires the store-profile-type API to accept session_id
       try {
+        console.log(`🔄 [Marketing] Storing profile type "${type}" with session_id "${sessionId}"...`)
         const response = await fetch('https://slimpathai.com/api/store-profile-type', {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
@@ -43,19 +44,28 @@ export default function SalesPage() {
             session_id: sessionId
           })
         })
+        
         if (response.ok) {
-          console.log('✅ Profile type stored in database for checkout')
+          const result = await response.json()
+          console.log('✅ [Marketing] Profile type stored in database for checkout:', result)
         } else {
-          console.warn('⚠️ Failed to store profile type in database, will rely on localStorage')
+          const errorData = await response.json().catch(() => ({ error: 'Unknown error' }))
+          console.error('❌ [Marketing] Failed to store profile type in database:', errorData)
+          // Still continue - localStorage will be used as fallback
         }
       } catch (error) {
-        console.warn('⚠️ Error storing profile type in database:', error)
-        // Continue anyway - localStorage will be used as fallback
+        console.error('❌ [Marketing] Error storing profile type in database:', error)
+        // Still continue - localStorage will be used as fallback
       }
     }
     
+    // Small delay to ensure database write completes before redirect
+    // This helps prevent race condition where webhook is called before profile_type is stored
+    await new Promise(resolve => setTimeout(resolve, 500))
+    
     // Redirect to checkout with type parameter
     const checkoutUrl = `${CHECKOUT_URLS[plan]}?type=${type}`
+    console.log(`🔄 [Marketing] Redirecting to checkout: ${checkoutUrl}`)
     window.location.href = checkoutUrl
   }
 
