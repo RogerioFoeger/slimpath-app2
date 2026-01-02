@@ -36,32 +36,49 @@ export default function SalesPage() {
       // The webhook will match this by checking for the most recent entry
       try {
         console.log(`🔄 [Marketing] Storing profile type "${type}" with session_id "${sessionId}"...`)
-        const response = await fetch('https://slimpathai.com/api/store-profile-type', {
+        
+        const apiUrl = 'https://slimpathai.com/api/store-profile-type'
+        console.log(`   Calling API: ${apiUrl}`)
+        
+        const response = await fetch(apiUrl, {
           method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
+          headers: { 
+            'Content-Type': 'application/json',
+          },
           body: JSON.stringify({
             profile_type: type,
             session_id: sessionId
           })
         })
         
+        console.log(`   Response status: ${response.status} ${response.statusText}`)
+        
         if (response.ok) {
           const result = await response.json()
           console.log('✅ [Marketing] Profile type stored in database for checkout:', result)
         } else {
-          const errorData = await response.json().catch(() => ({ error: 'Unknown error' }))
+          const errorText = await response.text()
+          let errorData
+          try {
+            errorData = JSON.parse(errorText)
+          } catch {
+            errorData = { error: errorText }
+          }
           console.error('❌ [Marketing] Failed to store profile type in database:', errorData)
-          // Still continue - localStorage will be used as fallback
+          console.error('   Status:', response.status)
+          console.error('   Status Text:', response.statusText)
+          console.warn('⚠️ Profile type not saved. You may need to contact support after payment.')
         }
       } catch (error) {
-        console.error('❌ [Marketing] Error storing profile type in database:', error)
-        // Still continue - localStorage will be used as fallback
+        console.error('❌ [Marketing] Network error storing profile type in database:', error)
+        console.error('   Error details:', error)
+        console.warn('⚠️ Network error saving profile type. Check your connection.')
       }
     }
     
     // Small delay to ensure database write completes before redirect
     // This helps prevent race condition where webhook is called before profile_type is stored
-    await new Promise(resolve => setTimeout(resolve, 500))
+    await new Promise(resolve => setTimeout(resolve, 1000)) // Increased to 1 second
     
     // Redirect to checkout with type parameter
     const checkoutUrl = `${CHECKOUT_URLS[plan]}?type=${type}`

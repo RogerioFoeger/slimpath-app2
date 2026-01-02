@@ -124,3 +124,4 @@ Your SlimPath AI platform is now deployed and ready for production! Just complet
 **Domains**: https://slim-path-marketing.vercel.app/ & https://slimpathaiapp.vercel.app/
 
 
+
