@@ -37,7 +37,7 @@ export default function SalesPage() {
       try {
         console.log(`🔄 [Marketing] Storing profile type "${type}" with session_id "${sessionId}"...`)
         
-        const apiUrl = 'https://slimpathai.com/api/store-profile-type'
+        const apiUrl = 'https://www.slimpathai.com/api/store-profile-type'
         console.log(`   Calling API: ${apiUrl}`)
         
         const response = await fetch(apiUrl, {
