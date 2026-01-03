@@ -19,8 +19,8 @@ const videoEmbeds: Record<string, string> = {
 
 // CHECKOUT URLS
 const CHECKOUT_URLS = {
-  monthly: 'https://metaslim.mycartpanda.com/checkout/204917190:1?test_mode=true',
-  annual: 'https://metaslim.mycartpanda.com/checkout/204917189:1?test_mode=true'
+  monthly: 'https://metaslim.mycartpanda.com/checkout/204917190:1',
+  annual: 'https://metaslim.mycartpanda.com/checkout/204917189:1'
 }
 
 export default function SalesPage() {
