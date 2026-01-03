@@ -6,6 +6,7 @@ import { Card } from '@/components/Card'
 import { CheckIcon } from '@/components/CheckIcon'
 import { getMetabolismType } from '@/lib/metabolism-types'
 
+// 1. LISTA DE VÍDEOS (Adicionada aqui no topo)
 const videoEmbeds: Record<string, string> = {
   'insulin':      `<script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/sdk.js", s.async=!0,document.head.appendChild(s); </script> <div id="ifr_6952c822bf3670f5340af207_wrapper" style="margin: 0 auto; width: 100%; "> <div style="position: relative; padding: 56.25% 0 0 0;" id="ifr_6952c822bf3670f5340af207_aspect"> <iframe frameborder="0" allowfullscreen src="about:blank" id="ifr_6952c822bf3670f5340af207" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" referrerpolicy="origin" onload=" this.onload=null, this.src='https://scripts.converteai.net/d8eccbd3-1abd-42bc-a6c9-76886e64285a/players/6952c822bf3670f5340af207/v4/embed.html' +(location.search||'?') +'&vl=' +encodeURIComponent(location.href)"></iframe> </div> </div>`,
   'retention':    `<script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/sdk.js", s.async=!0,document.head.appendChild(s); </script> <div id="ifr_6952c7e7b6c0dcc467296f69_wrapper" style="margin: 0 auto; width: 100%; "> <div style="position: relative; padding: 56.25% 0 0 0;" id="ifr_6952c7e7b6c0dcc467296f69_aspect"> <iframe frameborder="0" allowfullscreen src="about:blank" id="ifr_6952c7e7b6c0dcc467296f69" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" referrerpolicy="origin" onload=" this.onload=null, this.src='https://scripts.converteai.net/d8eccbd3-1abd-42bc-a6c9-76886e64285a/players/6952c7e7b6c0dcc467296f69/v4/embed.html' +(location.search||'?') +'&vl=' +encodeURIComponent(location.href)"></iframe> </div> </div>`,
@@ -17,7 +18,7 @@ const videoEmbeds: Record<string, string> = {
 
 // UPDATE THESE URLs with your actual Cartpanda/Kirvano checkout URLs
 const CHECKOUT_URLS = {
-  monthly: 'https://metaslim.mycartpanda.com/checkout/204917190:1',
+  monthly: 'https://metaslim.mycartpanda.com/checkout/204917190:1?test_mode=true',
   annual: 'https://metaslim.mycartpanda.com/checkout/204917189:1'
 }
 
@@ -128,21 +129,23 @@ export default function SalesPage() {
           <h2 className="text-3xl font-bold text-center mb-8">
             Watch: How to Fix Your {typeInfo.name}
           </h2>
-          <Card className="aspect-video bg-gray-900 flex items-center justify-center">
-            {/* Replace with actual video embed */}
-          {/* --- SUBSTITUA O TRECHO ANTIGO POR ISSO AQUI --- */}
-{videoEmbeds[type] ? (
-  <div 
-    className="w-full h-full absolute inset-0"
-    dangerouslySetInnerHTML={{ __html: videoEmbeds[type] }} 
-  />
-) : (
-  <div className="text-center text-white">
-    <div className="text-6xl mb-4">🎥</div>
-    <p>Carregando vídeo...</p>
-  </div>
-)}
+          
+          {/* AQUI ESTÁ O VÍDEO CORRETO - SEM MUDAR O LUGAR DA SEÇÃO */}
+          <Card className="aspect-video bg-black flex items-center justify-center overflow-hidden relative shadow-2xl rounded-xl">
+             {videoEmbeds[type] ? (
+               <div 
+                 className="w-full h-full absolute inset-0"
+                 dangerouslySetInnerHTML={{ __html: videoEmbeds[type] }} 
+               />
+             ) : (
+               /* Fallback se não tiver vídeo */
+               <div className="text-center text-white">
+                 <div className="text-6xl mb-4">🎥</div>
+                 <p className="text-xl">Carregando vídeo...</p>
+               </div>
+             )}
           </Card>
+
         </div>
       </section>
 
