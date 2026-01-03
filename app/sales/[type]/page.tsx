@@ -6,9 +6,18 @@ import { Card } from '@/components/Card'
 import { CheckIcon } from '@/components/CheckIcon'
 import { getMetabolismType } from '@/lib/metabolism-types'
 
+const videoEmbeds: Record<string, string> = {
+  'insulin':      `<script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/sdk.js", s.async=!0,document.head.appendChild(s); </script> <div id="ifr_6952c822bf3670f5340af207_wrapper" style="margin: 0 auto; width: 100%; "> <div style="position: relative; padding: 56.25% 0 0 0;" id="ifr_6952c822bf3670f5340af207_aspect"> <iframe frameborder="0" allowfullscreen src="about:blank" id="ifr_6952c822bf3670f5340af207" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" referrerpolicy="origin" onload=" this.onload=null, this.src='https://scripts.converteai.net/d8eccbd3-1abd-42bc-a6c9-76886e64285a/players/6952c822bf3670f5340af207/v4/embed.html' +(location.search||'?') +'&vl=' +encodeURIComponent(location.href)"></iframe> </div> </div>`,
+  'retention':    `<script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/sdk.js", s.async=!0,document.head.appendChild(s); </script> <div id="ifr_6952c7e7b6c0dcc467296f69_wrapper" style="margin: 0 auto; width: 100%; "> <div style="position: relative; padding: 56.25% 0 0 0;" id="ifr_6952c7e7b6c0dcc467296f69_aspect"> <iframe frameborder="0" allowfullscreen src="about:blank" id="ifr_6952c7e7b6c0dcc467296f69" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" referrerpolicy="origin" onload=" this.onload=null, this.src='https://scripts.converteai.net/d8eccbd3-1abd-42bc-a6c9-76886e64285a/players/6952c7e7b6c0dcc467296f69/v4/embed.html' +(location.search||'?') +'&vl=' +encodeURIComponent(location.href)"></iframe> </div> </div>`,
+  'cortisol':     `<script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/sdk.js", s.async=!0,document.head.appendChild(s); </script> <div id="ifr_6952a8edba8707e946be8f0d_wrapper" style="margin: 0 auto; width: 100%; "> <div style="position: relative; padding: 56.25% 0 0 0;" id="ifr_6952a8edba8707e946be8f0d_aspect"> <iframe frameborder="0" allowfullscreen src="about:blank" id="ifr_6952a8edba8707e946be8f0d" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" referrerpolicy="origin" onload=" this.onload=null, this.src='https://scripts.converteai.net/d8eccbd3-1abd-42bc-a6c9-76886e64285a/players/6952a8edba8707e946be8f0d/v4/embed.html' +(location.search||'?') +'&vl=' +encodeURIComponent(location.href)"></iframe> </div> </div>`,
+  'inflammatory': `<script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/sdk.js", s.async=!0,document.head.appendChild(s); </script> <div id="ifr_6952a89b90b70171e3830d4f_wrapper" style="margin: 0 auto; width: 100%; "> <div style="position: relative; padding: 56.25% 0 0 0;" id="ifr_6952a89b90b70171e3830d4f_aspect"> <iframe frameborder="0" allowfullscreen src="about:blank" id="ifr_6952a89b90b70171e3830d4f" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" referrerpolicy="origin" onload=" this.onload=null, this.src='https://scripts.converteai.net/d8eccbd3-1abd-42bc-a6c9-76886e64285a/players/6952a89b90b70171e3830d4f/v4/embed.html' +(location.search||'?') +'&vl=' +encodeURIComponent(location.href)"></iframe> </div> </div>`,
+  'hormonal':     `<script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/sdk.js", s.async=!0,document.head.appendChild(s); </script> <div id="ifr_6952a847ed1852c895e1dcb0_wrapper" style="margin: 0 auto; width: 100%; "> <div style="position: relative; padding: 56.25% 0 0 0;" id="ifr_6952a847ed1852c895e1dcb0_aspect"> <iframe frameborder="0" allowfullscreen src="about:blank" id="ifr_6952a847ed1852c895e1dcb0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" referrerpolicy="origin" onload=" this.onload=null, this.src='https://scripts.converteai.net/d8eccbd3-1abd-42bc-a6c9-76886e64285a/players/6952a847ed1852c895e1dcb0/v4/embed.html' +(location.search||'?') +'&vl=' +encodeURIComponent(location.href)"></iframe> </div> </div>`,
+  'metabolic':    `<script type="text/javascript"> var s=document.createElement("script"); s.src="https://scripts.converteai.net/lib/js/smartplayer-wc/v4/sdk.js", s.async=!0,document.head.appendChild(s); </script> <div id="ifr_6952a7d471611df8185232ca_wrapper" style="margin: 0 auto; width: 100%; "> <div style="position: relative; padding: 56.25% 0 0 0;" id="ifr_6952a7d471611df8185232ca_aspect"> <iframe frameborder="0" allowfullscreen src="about:blank" id="ifr_6952a7d471611df8185232ca" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" referrerpolicy="origin" onload=" this.onload=null, this.src='https://scripts.converteai.net/d8eccbd3-1abd-42bc-a6c9-76886e64285a/players/6952a7d471611df8185232ca/v4/embed.html' +(location.search||'?') +'&vl=' +encodeURIComponent(location.href)"></iframe> </div> </div>`,
+};
+
 // UPDATE THESE URLs with your actual Cartpanda/Kirvano checkout URLs
 const CHECKOUT_URLS = {
-  monthly: 'https://metaslim.mycartpanda.com/checkout/204917190:1?test_mode=true',
+  monthly: 'https://metaslim.mycartpanda.com/checkout/204917190:1',
   annual: 'https://metaslim.mycartpanda.com/checkout/204917189:1'
 }
 
@@ -121,13 +130,18 @@ export default function SalesPage() {
           </h2>
           <Card className="aspect-video bg-gray-900 flex items-center justify-center">
             {/* Replace with actual video embed */}
-            <div className="text-center">
-              <div className="text-6xl mb-4">🎥</div>
-              <p className="text-white text-xl">Video Player</p>
-              <p className="text-gray-400 text-sm mt-2">
-                [Embed your sales video here]
-              </p>
-            </div>
+          {/* --- SUBSTITUA O TRECHO ANTIGO POR ISSO AQUI --- */}
+{videoEmbeds[type] ? (
+  <div 
+    className="w-full h-full absolute inset-0"
+    dangerouslySetInnerHTML={{ __html: videoEmbeds[type] }} 
+  />
+) : (
+  <div className="text-center text-white">
+    <div className="text-6xl mb-4">🎥</div>
+    <p>Carregando vídeo...</p>
+  </div>
+)}
           </Card>
         </div>
       </section>
